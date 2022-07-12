@@ -1,3 +1,5 @@
+const poker = require('poker-hands'); // encontre a livraria poker-hands que iremos usar alguns metodos dele 
+
 
 function creatDeck () {
     let suits = ['H','C','D','S'];
@@ -17,9 +19,9 @@ function creatDeck () {
 
 
 function shuffleDeck(deck){   // embaralha as 52 cartas com math flor 
-for (let i = o ; i < 52 ; i ++){    //loop para identificar o deck 
+for (let i = 0 ; i < 52 ; i ++){    //loop para identificar o deck 
         let tempCard = deck[i];
-        let randomIndex = Math.floor(Math.random()* 52);  // gera um numero aleatorio dentro do que foi sugerido no caso 52
+        let randomIndex = Math.floor(Math.random() * 52);  // gera um numero aleatorio dentro do que foi sugerido no caso 52
 
         deck[i] = deck[randomIndex]; // no loop  e math  tem 52 seleciona o 52 e coloca dentro de i do loop 
         deck[randomIndex] =  tempCard ; //escolheu um numero aleatorio 
@@ -28,6 +30,31 @@ for (let i = o ; i < 52 ; i ++){    //loop para identificar o deck
     }
 }
 
-let testDeck = creatDeck();
-shuffleDeck (testDeck);
+
+
+// executar passo 1, 2 e 3 
+
+for (var i = 0 ; i <15 ; i++){
+    let testDeck = creatDeck();  // cria baralho organizado
+shuffleDeck(testDeck); // embaralha as cartas 
+
 console.log(testDeck);
+ 
+// passo 1 :  remover 5 primeiras cartas de um shuffle deck 
+
+let showDown = testDeck.splice(0,5);   
+
+console.log(showDown);
+
+// passo 2 :  converter este array em string cada carta separada por um espaço 
+
+let fiveCardHandString = showDown.join(' ');   // transforma array em string separados por qualquer coisa que estiver dentro do parentes no caso  join(espaço)
+
+console.log(fiveCardHandString)
+
+let  resulHand = poker.getHandStrength(fiveCardHandString);
+
+console.log(resulHand)
+}
+
+//verificar o loop ate encontrar royal flush 
