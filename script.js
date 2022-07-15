@@ -50,18 +50,19 @@ shuffleDeck(testDeck); // embaralha as cartas
 
 let showDown = testDeck.splice(0,5);   
 
-// console.log(showDown);
+console.log(showDown);
 
 // passo 2 :  converter este array em string cada carta separada por um espaço 
 
 var fiveCardHandString = showDown.join(' ');   // transforma array em string separados por qualquer coisa que estiver dentro do parentes no caso  join(espaço)
 
-console.log(fiveCardHandString);
+//console.log(fiveCardHandString);
 
 
 
-console.log('esta e a ' +  poker.getHandStrength(fiveCardHandString));
+ console.log( poker.getHandStrength(fiveCardHandString));
 counter++;
 
 }while(poker.getHandStrength(fiveCardHandString) > 0);// para parar no loop do royal flush 
 
+console.log('demorou' + '   ' + counter + '  '+ 'vezes');
