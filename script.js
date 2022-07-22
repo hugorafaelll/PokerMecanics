@@ -13,7 +13,7 @@ function creatDeck () {
             // console.log( ranks[rankCount] + suits[suitCounter])
             deck.push(ranks[rankCount] + suits[suitCounter])
             }
-    }   return deck // doesnt return anything 
+    }   return deck //  array  with ordened deck 
 }
 
 
@@ -21,20 +21,14 @@ function creatDeck () {
 function shuffleDeck(deck){   // embaralha as 52 cartas com math flor 
 for (let i = 0 ; i < 52 ; i ++){    //loop para identificar o deck 
         let tempCard = deck[i];
-        let randomIndex = Math.floor(Math.random() * 52);  // gera um numero aleatorio dentro do que foi sugerido no caso 52
-
-        deck[i] = deck[randomIndex]; // no loop  e math  tem 52 seleciona o 52 e coloca dentro de i do loop 
+        let randomIndex = Math.floor(Math.random() * 52);  
+        deck[i] = deck[randomIndex]; // dentro de cada i do deck icrementado gere uma posição ramdon dentro de 52
         deck[randomIndex] =  tempCard ; //escolheu um numero aleatorio 
 
 
     }
 }
 
-
-
-// executar passo 1, 2 e 3 
-
-//   for (var i = 0 ; i <5 ; i++){}
 
 let counter = 0 ;
 
@@ -44,8 +38,7 @@ let counter = 0 ;
     let testDeck = creatDeck();  // cria baralho organizado
 shuffleDeck(testDeck); // embaralha as cartas 
 
-// console.log(testDeck);
- 
+
 // passo 1 :  remover 5 primeiras cartas de um shuffle deck 
 
 let showDown = testDeck.splice(0,5);   
@@ -54,15 +47,42 @@ console.log(showDown);
 
 // passo 2 :  converter este array em string cada carta separada por um espaço 
 
-var fiveCardHandString = showDown.join(' ');   // transforma array em string separados por qualquer coisa que estiver dentro do parentes no caso  join(espaço)
+var fiveCardHandString = showDown.join('');   
+var resultado =  poker.getHandStrength(fiveCardHandString);
 
-//console.log(fiveCardHandString);
-
-
-
- console.log( poker.getHandStrength(fiveCardHandString));
 counter++;
 
-}while(poker.getHandStrength(fiveCardHandString) > 0);// para parar no loop do royal flush 
+}while(resultado ==7);// parar no loop do royal flush 
 
-console.log('demorou' + '   ' + counter + '  '+ 'vezes');
+switch (fiveCardHandString){
+    case 9:
+        console.log("A high")
+    break
+    case 8 :
+        console.log("Pair")
+        break
+    case 7 : 
+    console.log("TWO PAIR")
+    break
+    case 6 :
+    console.log("SET")
+    break
+    case 5 :
+        console.log("Straight")
+        break
+    case 4 : 
+        console.log("FLUSH")
+    break
+    case 3 :
+        console.log("THATS A FULL HOUSE")
+        break
+    case 2 :
+        console.log("thats a FOR OF A KING")
+        break
+    case 1 :
+        console.log("almost there thets a STRAIGH FLUSH")
+    default :
+    console.log("YOU ALREADY DONE THATS A ROYAL STRAIGHT F ")
+}
+
+console.log(`demorou`+ ' ' + counter + '  '+ 'vezes');
